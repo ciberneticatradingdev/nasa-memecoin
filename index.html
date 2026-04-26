@@ -57,44 +57,44 @@
     .topnav-left {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
     }
-    .topnav-left .explore-btn {
-      font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
+    .nav-ca {
       display: flex;
       align-items: center;
-      gap: 6px;
-    }
-    .topnav-left .explore-btn .dot {
-      width: 18px; height: 18px;
-      border: 2px solid var(--text-secondary);
-      border-radius: 50%;
-      position: relative;
-    }
-    .topnav-left .explore-btn .dot::after {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 4px; height: 4px;
-      background: var(--text-secondary);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .search-box {
-      background: transparent;
+      gap: 8px;
+      background: rgba(255,255,255,0.05);
       border: 1px solid var(--border-light);
       padding: 6px 14px;
-      color: var(--text-secondary);
-      font-size: 0.8rem;
-      font-family: inherit;
-      width: 160px;
-      outline: none;
-      transition: border-color 0.2s;
+      cursor: pointer;
+      transition: all 0.2s;
+      max-width: 280px;
     }
-    .search-box::placeholder { color: var(--text-muted); }
-    .search-box:focus { border-color: var(--text-secondary); }
+    .nav-ca:hover {
+      border-color: var(--nasa-red);
+      background: rgba(224,60,49,0.05);
+    }
+    .nav-ca-label {
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .nav-ca-value {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: #ffab00;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .nav-ca-copy {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
 
     .topnav-center {
       position: absolute;
@@ -319,11 +319,77 @@
     }
     .dossier-card {
       background: var(--bg-card);
-      padding: 28px;
       border-left: 4px solid var(--nasa-red);
       transition: background 0.2s;
+      overflow: hidden;
     }
     .dossier-card:hover { background: #242424; }
+    .dossier-card-header {
+      padding: 28px;
+      cursor: pointer;
+    }
+    .dossier-card-expand {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .dossier-card.open .dossier-card-expand {
+      max-height: 600px;
+    }
+    .dossier-file {
+      padding: 0 28px 28px;
+      border-top: 1px solid var(--border);
+    }
+    .dossier-file h4 {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--nasa-red);
+      margin: 20px 0 12px;
+    }
+    .dossier-file .file-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 8px;
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+    .dossier-file .file-label {
+      color: var(--text-muted);
+      min-width: 100px;
+      flex-shrink: 0;
+      font-weight: 600;
+    }
+    .dossier-file .file-value {
+      color: var(--text-secondary);
+    }
+    .dossier-file .file-narrative {
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-top: 8px;
+    }
+    .dossier-toggle {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      transition: color 0.2s;
+    }
+    .dossier-card:hover .dossier-toggle { color: var(--nasa-red); }
+    .dossier-toggle .arrow {
+      transition: transform 0.3s;
+      display: inline-block;
+    }
+    .dossier-card.open .dossier-toggle .arrow {
+      transform: rotate(90deg);
+    }
     .dossier-badge {
       display: inline-block;
       font-size: 0.6rem;
@@ -539,6 +605,72 @@
       opacity: 0.6;
     }
 
+    /* ===== SUGGEST FORM ===== */
+    .suggest-section {
+      margin-top: 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      padding: 32px;
+    }
+    .suggest-section h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .suggest-section .suggest-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .suggest-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .suggest-form input, .suggest-form textarea, .suggest-form select {
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.82rem;
+      padding: 10px 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .suggest-form input:focus, .suggest-form textarea:focus, .suggest-form select:focus {
+      border-color: var(--nasa-red);
+    }
+    .suggest-form textarea {
+      grid-column: 1 / -1;
+      min-height: 80px;
+      resize: vertical;
+    }
+    .suggest-form .suggest-btn {
+      grid-column: 1 / -1;
+      background: var(--nasa-red);
+      color: white;
+      border: none;
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 12px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: background 0.2s;
+    }
+    .suggest-form .suggest-btn:hover { background: var(--nasa-red-hover); }
+    .suggest-success {
+      display: none;
+      padding: 14px;
+      background: rgba(0,255,65,0.08);
+      border: 1px solid rgba(0,255,65,0.2);
+      color: #00ff41;
+      font-size: 0.8rem;
+      text-align: center;
+      margin-top: 12px;
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .news-grid { grid-template-columns: repeat(2, 1fr); }
@@ -549,6 +681,7 @@
       .topnav { padding: 0 16px; }
       .topnav-right { gap: 16px; }
       .topnav-right a .chevron-text { display: none; }
+      .nav-ca { display: none; }
       .hero-content { padding: 60px 24px 0; }
       .hero-bar { padding: 16px 24px; gap: 24px; flex-wrap: wrap; }
       .section { padding: 48px 24px; }
@@ -557,10 +690,10 @@
       .token-grid { grid-template-columns: 1fr 1fr; }
       .quote-banner { padding: 32px 24px; }
       .quote-banner blockquote { font-size: 1.15rem; }
+      .suggest-form { grid-template-columns: 1fr; }
     }
     @media (max-width: 480px) {
       .topnav-right .hide-sm { display: none; }
-      .search-box { width: 100px; }
       .token-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -570,11 +703,11 @@
 <!-- ===== TOP NAV ===== -->
 <header class="topnav">
   <div class="topnav-left">
-    <div class="explore-btn">
-      Explore
-      <span class="dot"></span>
+    <div class="nav-ca" onclick="copyNavCA()" title="Click to copy">
+      <span class="nav-ca-label">CA</span>
+      <span class="nav-ca-value" id="nav-ca">TBA — LAUNCHING SOON</span>
+      <span class="nav-ca-copy" id="nav-ca-icon">📋</span>
     </div>
-    <input type="text" class="search-box" placeholder="Search...">
   </div>
   <div class="topnav-center">
     <img class="nav-logo" src="logo.png" alt="$NASA">
@@ -666,76 +799,24 @@
     <span class="more-link" style="color:var(--text-muted); font-size:0.75rem; letter-spacing:2px;">11 CASES — 4 YEARS — 0 ANSWERS</span>
   </div>
 
-  <div class="dossier-grid">
-    <div class="dossier-card">
-      <span class="dossier-badge badge-missing">MISSING</span>
-      <h3>Neil McCasland</h3>
-      <div class="role">Retired USAF Major General — Aerospace & Defense</div>
-      <div class="detail">Vanished February 2026 after leaving home for a walk in New Mexico. Background in aerospace and classified defense programs. His disappearance triggered the current wave of attention.</div>
-    </div>
+  <div class="dossier-grid" id="dossier-grid"></div>
 
-    <div class="dossier-card">
-      <span class="dossier-badge badge-missing">MISSING</span>
-      <h3>Monica Reza</h3>
-      <div class="role">Researcher — NASA Jet Propulsion Laboratory</div>
-      <div class="detail">Went missing June 2025 while hiking near Los Angeles. Worked at JPL — the facility behind Mars rovers and deep space missions. No trace found.</div>
-    </div>
-
-    <div class="dossier-card">
-      <span class="dossier-badge badge-dead">DECEASED</span>
-      <h3>Nuno Loureiro</h3>
-      <div class="role">Physicist — MIT</div>
-      <div class="detail">Killed in a shooting incident, December 2025. Researcher at one of the world's most prestigious physics programs. Officially: killed by a "former classmate."</div>
-    </div>
-
-    <div class="dossier-card">
-      <span class="dossier-badge badge-dead">DECEASED</span>
-      <h3>Jason Thomas</h3>
-      <div class="role">Chemical Biologist — Novartis</div>
-      <div class="detail">Died in a drowning incident, early 2025. Official report: "no foul play." Worked in chemical biology at a major pharmaceutical corporation.</div>
-    </div>
-
-    <div class="dossier-card">
-      <span class="dossier-badge badge-missing">MISSING</span>
-      <h3>Melissa Casias</h3>
-      <div class="role">Administrative — Los Alamos National Laboratory</div>
-      <div class="detail">Went missing in 2024. Worked at Los Alamos — birthplace of the atomic bomb. Reports suggest "personal circumstances." <span class="redacted">REDACTED</span></div>
-    </div>
-
-    <div class="dossier-card">
-      <span class="dossier-badge badge-dead">DECEASED</span>
-      <h3>Amy Eskridge</h3>
-      <div class="role">Independent Researcher — Anti-Gravity</div>
-      <div class="detail">Died June 2022. Known for anti-gravity research claims. Official cause: "personal distress." One of the earliest cases in the pattern.</div>
-    </div>
-
-    <div class="dossier-card">
-      <span class="dossier-badge badge-missing">MISSING</span>
-      <h3>Steven Garcia</h3>
-      <div class="role">Property Custodian — NNSA Facility</div>
-      <div class="detail">Went missing August 2025. Worked at a National Nuclear Security Administration facility. Had access to <span class="redacted">CLASSIFIED</span> areas.</div>
-    </div>
-
-    <div class="dossier-card">
-      <span class="dossier-badge badge-missing">MISSING</span>
-      <h3>Anthony Chavez</h3>
-      <div class="role">Former Worker — Los Alamos</div>
-      <div class="detail">Missing since May 2024. Another Los Alamos connection. Second person from the same facility to vanish.</div>
-    </div>
-
-    <div class="dossier-card">
-      <span class="dossier-badge badge-dead">DECEASED</span>
-      <h3>Carl Grillmair</h3>
-      <div class="role">Astrophysicist</div>
-      <div class="detail">Murdered February 2026. Professional astrophysicist with decades of research. Death confirmed as homicide.</div>
-    </div>
-
-    <div class="dossier-card">
-      <span class="dossier-badge badge-dead">DECEASED</span>
-      <h3>Cole Allen</h3>
-      <div class="role">NASA Employee</div>
-      <div class="detail">NASA employee connected to the Trump shooting. Was this revenge? Coincidence? The questions keep piling up. The answers don't.</div>
-    </div>
+  <!-- Suggest a Case -->
+  <div class="suggest-section">
+    <h3>📁 Know Someone Missing from the List?</h3>
+    <p class="suggest-desc">Submit a case for review. Suggestions are vetted before being added — we only include publicly documented cases.</p>
+    <form class="suggest-form" id="suggest-form" onsubmit="submitSuggestion(event)">
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="text" name="role" placeholder="Role / Institution">
+      <select name="status">
+        <option value="missing">Missing</option>
+        <option value="deceased">Deceased</option>
+      </select>
+      <input type="text" name="date" placeholder="Date (e.g. June 2025)">
+      <textarea name="details" placeholder="What happened? Include any sources or links..." required></textarea>
+      <button type="submit" class="suggest-btn">SUBMIT FOR REVIEW</button>
+    </form>
+    <div class="suggest-success" id="suggest-success">✓ Case submitted for review. If verified, it will be added to the dossier.</div>
   </div>
 </div>
 
@@ -806,7 +887,7 @@
 <!-- ===== TOKEN ===== -->
 <div class="section" id="token">
   <div style="display:flex; align-items:center; gap:40px; margin-bottom:36px; flex-wrap:wrap;">
-    <img src="logo.png" alt="$NASA" style="width:140px; height:140px; border-radius:50%; flex-shrink:0;">
+    <img src="logo.png" alt="$NASA" style="width:280px; height:280px; flex-shrink:0;">
     <div>
       <h2 style="font-size:2rem; font-weight:800; letter-spacing:-0.5px; margin-bottom:12px;">Token Intel</h2>
       <p style="font-size:0.9rem; color:var(--text-secondary); max-width:540px; line-height:1.6;">$NASA is a community token on Solana. No team allocation. No VC. Just degens who think the truth shouldn't be classified.</p>
@@ -877,14 +958,217 @@
 </footer>
 
 <script>
+  // === CONTRACT ADDRESS (change this when token launches) ===
+  const CONTRACT_ADDRESS = ''; // paste CA here when ready
+
+  function getCA() {
+    return CONTRACT_ADDRESS || 'TBA — LAUNCHING SOON';
+  }
+  function isTBA() { return !CONTRACT_ADDRESS; }
+
+  // Set CA everywhere on load
+  document.getElementById('ca').textContent = getCA();
+  document.getElementById('nav-ca').textContent = getCA();
+
   function copyCA() {
+    if (isTBA()) return;
+    navigator.clipboard.writeText(CONTRACT_ADDRESS);
     const el = document.getElementById('ca');
-    const ca = el.textContent;
-    if (ca.includes('TBA')) return;
-    navigator.clipboard.writeText(ca);
-    const orig = ca;
+    const orig = el.textContent;
     el.textContent = 'COPIED ✓';
     setTimeout(() => el.textContent = orig, 2000);
+  }
+
+  function copyNavCA() {
+    if (isTBA()) return;
+    navigator.clipboard.writeText(CONTRACT_ADDRESS);
+    const icon = document.getElementById('nav-ca-icon');
+    icon.textContent = '✓';
+    setTimeout(() => icon.textContent = '📋', 2000);
+  }
+
+  // === DOSSIER DATA ===
+  const scientists = [
+    {
+      status: 'missing', name: 'Neil McCasland',
+      role: 'Retired USAF Major General — Aerospace & Defense',
+      detail: 'Vanished February 2026 after leaving home for a walk in New Mexico. Background in aerospace and classified defense programs. His disappearance triggered the current wave of attention.',
+      file: {
+        lastSeen: 'February 2026, New Mexico',
+        institution: 'US Air Force (retired)',
+        clearance: 'Top Secret / SCI (estimated)',
+        fields: 'Aerospace, Defense, Classified Programs',
+        narrative: 'McCasland\'s background in aerospace and defense work made his case particularly susceptible to speculation. Online discussions quickly framed him as someone who might have possessed sensitive or secret knowledge. His vanishing triggered the entire wave of public attention that led to Congressional hearings.'
+      }
+    },
+    {
+      status: 'missing', name: 'Monica Reza',
+      role: 'Researcher — NASA Jet Propulsion Laboratory',
+      detail: 'Went missing June 2025 while hiking near Los Angeles. Worked at JPL — the facility behind Mars rovers and deep space missions. No trace found.',
+      file: {
+        lastSeen: 'June 2025, near Los Angeles',
+        institution: 'NASA Jet Propulsion Laboratory',
+        clearance: '<span class="redacted">REDACTED</span>',
+        fields: 'Space Research, Deep Space Missions',
+        narrative: 'JPL is NASA\'s center for robotic exploration of the solar system. Reza disappeared while hiking — a cover story that has appeared in multiple cases. No body has ever been recovered. JPL handles some of the most sensitive space technology in the US government.'
+      }
+    },
+    {
+      status: 'dead', name: 'Nuno Loureiro',
+      role: 'Physicist — MIT',
+      detail: 'Killed in a shooting incident, December 2025. Researcher at one of the world\'s most prestigious physics programs. Officially: killed by a "former classmate."',
+      file: {
+        lastSeen: 'December 2025, Massachusetts',
+        institution: 'Massachusetts Institute of Technology',
+        clearance: 'Unknown',
+        fields: 'Plasma Physics, Fusion Research',
+        narrative: 'Loureiro was a respected plasma physicist whose work touched on fusion energy — one of the most strategically important fields in modern science. He was shot by someone described as a "former classmate." The shooter\'s motive has never been fully explained to the public.'
+      }
+    },
+    {
+      status: 'dead', name: 'Jason Thomas',
+      role: 'Chemical Biologist — Novartis',
+      detail: 'Died in a drowning incident, early 2025. Official report: "no foul play." Worked in chemical biology at a major pharmaceutical corporation.',
+      file: {
+        lastSeen: 'Early 2025',
+        institution: 'Novartis',
+        clearance: 'Corporate / Private Sector',
+        fields: 'Chemical Biology, Pharmaceuticals',
+        narrative: 'Thomas worked at Novartis in chemical biology. His death was ruled a drowning with "no foul play" — a determination that has raised eyebrows given the broader pattern. Pharmaceutical and biotech researchers have historically been targets in suppression operations.'
+      }
+    },
+    {
+      status: 'missing', name: 'Melissa Casias',
+      role: 'Administrative — Los Alamos National Laboratory',
+      detail: 'Went missing in 2024. Worked at Los Alamos — birthplace of the atomic bomb.',
+      file: {
+        lastSeen: '2024, New Mexico',
+        institution: 'Los Alamos National Laboratory',
+        clearance: '<span class="redacted">REDACTED</span>',
+        fields: 'Administrative (access to classified systems)',
+        narrative: 'Los Alamos is one of the most sensitive nuclear research facilities on Earth. Even administrative staff at LANL typically hold security clearances and have access to classified information systems. Casias is one of two people from Los Alamos on this list.'
+      }
+    },
+    {
+      status: 'dead', name: 'Amy Eskridge',
+      role: 'Independent Researcher — Anti-Gravity',
+      detail: 'Died June 2022. Known for anti-gravity research claims. Official cause: "personal distress."',
+      file: {
+        lastSeen: 'June 2022',
+        institution: 'Independent',
+        clearance: 'None (claimed)',
+        fields: 'Anti-Gravity, Propulsion, Exotic Physics',
+        narrative: 'Eskridge was vocal about anti-gravity propulsion research — a field that overlaps significantly with UAP technology claims. She died in 2022, making her one of the earliest cases. Her death was attributed to "personal distress" — a vague classification that has drawn scrutiny.'
+      }
+    },
+    {
+      status: 'missing', name: 'Steven Garcia',
+      role: 'Property Custodian — NNSA Facility',
+      detail: 'Went missing August 2025. Worked at a National Nuclear Security Administration facility.',
+      file: {
+        lastSeen: 'August 2025',
+        institution: 'National Nuclear Security Administration',
+        clearance: 'Facility Access (Q or L clearance typical)',
+        fields: 'Nuclear Security Infrastructure',
+        narrative: 'NNSA maintains the US nuclear weapons stockpile. Even custodial roles at NNSA facilities require background checks and often security clearances. Garcia had physical access to <span class="redacted">CLASSIFIED</span> areas within the facility.'
+      }
+    },
+    {
+      status: 'missing', name: 'Anthony Chavez',
+      role: 'Former Worker — Los Alamos',
+      detail: 'Missing since May 2024. Another Los Alamos connection. Second person from the same facility to vanish.',
+      file: {
+        lastSeen: 'May 2024, New Mexico',
+        institution: 'Los Alamos National Laboratory (former)',
+        clearance: '<span class="redacted">REDACTED</span>',
+        fields: 'Unknown — Los Alamos roles span nuclear, computing, weapons',
+        narrative: 'The second person connected to Los Alamos to go missing. The fact that two individuals from the same highly classified facility both vanished within the same year is one of the most compelling data points in the entire pattern.'
+      }
+    },
+    {
+      status: 'dead', name: 'Carl Grillmair',
+      role: 'Astrophysicist',
+      detail: 'Murdered February 2026. Professional astrophysicist with decades of research. Death confirmed as homicide.',
+      file: {
+        lastSeen: 'February 2026',
+        institution: 'Academic / Research',
+        clearance: 'Unknown',
+        fields: 'Astrophysics, Stellar Research',
+        narrative: 'Grillmair was a professional astrophysicist murdered in the same month that Neil McCasland disappeared. His death has been confirmed as homicide. Two high-profile cases in the same month — February 2026 — pushed the story into mainstream consciousness.'
+      }
+    },
+    {
+      status: 'dead', name: 'Cole Allen',
+      role: 'NASA Employee',
+      detail: 'NASA employee connected to the Trump shooting. Was this revenge? Coincidence?',
+      file: {
+        lastSeen: '<span class="redacted">REDACTED</span>',
+        institution: 'NASA',
+        clearance: '<span class="redacted">REDACTED</span>',
+        fields: '<span class="redacted">REDACTED</span>',
+        narrative: 'Allen was a NASA employee whose name surfaced in connection with the Trump shooting. The overlap between a NASA employee and a political assassination attempt has fueled intense speculation. Was this retaliation for the dead scientists? Was Allen a target or a participant? The official record provides no clarity.'
+      }
+    }
+  ];
+
+  // Render dossier
+  const grid = document.getElementById('dossier-grid');
+  scientists.forEach((s, i) => {
+    const statusClass = s.status === 'missing' ? 'badge-missing' : 'badge-dead';
+    const statusText = s.status === 'missing' ? 'MISSING' : 'DECEASED';
+    const card = document.createElement('div');
+    card.className = 'dossier-card';
+    card.innerHTML = `
+      <div class="dossier-card-header" onclick="toggleFile(this)">
+        <span class="dossier-badge ${statusClass}">${statusText}</span>
+        <h3>${s.name}</h3>
+        <div class="role">${s.role}</div>
+        <div class="detail">${s.detail}</div>
+        <div class="dossier-toggle"><span class="arrow">►</span> VIEW CLASSIFIED FILE</div>
+      </div>
+      <div class="dossier-card-expand">
+        <div class="dossier-file">
+          <h4>PERSONNEL FILE — ${s.name.toUpperCase()}</h4>
+          <div class="file-row"><span class="file-label">Last Seen</span><span class="file-value">${s.file.lastSeen}</span></div>
+          <div class="file-row"><span class="file-label">Institution</span><span class="file-value">${s.file.institution}</span></div>
+          <div class="file-row"><span class="file-label">Clearance</span><span class="file-value">${s.file.clearance}</span></div>
+          <div class="file-row"><span class="file-label">Fields</span><span class="file-value">${s.file.fields}</span></div>
+          <div class="file-narrative">${s.file.narrative}</div>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  function toggleFile(header) {
+    const card = header.closest('.dossier-card');
+    card.classList.toggle('open');
+    const label = card.querySelector('.dossier-toggle');
+    label.innerHTML = card.classList.contains('open')
+      ? '<span class="arrow">►</span> CLOSE FILE'
+      : '<span class="arrow">►</span> VIEW CLASSIFIED FILE';
+  }
+
+  // === SUGGEST FORM ===
+  function submitSuggestion(e) {
+    e.preventDefault();
+    const form = document.getElementById('suggest-form');
+    const data = new FormData(form);
+    // Store locally (in real deployment, this would POST to an API)
+    const suggestion = {
+      name: data.get('name'),
+      role: data.get('role'),
+      status: data.get('status'),
+      date: data.get('date'),
+      details: data.get('details'),
+      submitted: new Date().toISOString()
+    };
+    const existing = JSON.parse(localStorage.getItem('nasa-suggestions') || '[]');
+    existing.push(suggestion);
+    localStorage.setItem('nasa-suggestions', JSON.stringify(existing));
+    form.reset();
+    document.getElementById('suggest-success').style.display = 'block';
+    setTimeout(() => document.getElementById('suggest-success').style.display = 'none', 5000);
   }
 </script>
 </body>
