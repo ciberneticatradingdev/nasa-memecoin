@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>$NASA — No Alive Scientists Allowed</title>
+  <meta name="description" content="10+ scientists working on fusion, UAPs, and anti-gravity have died or gone missing. Coincidence? $NASA on Solana.">
+  <meta property="og:title" content="$NASA — No Alive Scientists Allowed">
+  <meta property="og:description" content="10+ scientists dead or missing. The biggest cover-up in modern history. $NASA on Solana.">
+  <meta property="og:image" content="og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --nasa-blue: #0B3D91;
+      --nasa-red: #FC3D21;
+      --nasa-white: #e8e8e8;
+      --bg-black: #050505;
+      --terminal-green: #00ff41;
+      --redacted-red: #ff1744;
+      --classified-amber: #ffab00;
+      --glow-blue: rgba(11, 61, 145, 0.4);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-black);
+      color: var(--nasa-white);
+      font-family: 'Space Mono', monospace;
+      overflow-x: hidden;
+      cursor: crosshair;
+    }
+
+    /* ===== SCANLINE OVERLAY ===== */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.08) 2px,
+        rgba(0,0,0,0.08) 4px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ===== STAR FIELD ===== */
+    .starfield {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle var(--dur) ease-in-out infinite alternate;
+    }
+    @keyframes twinkle {
+      0% { opacity: 0.2; }
+      100% { opacity: 1; }
+    }
+
+    /* ===== CLASSIFIED BANNER ===== */
+    .classified-bar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--nasa-red),
+        var(--nasa-red) 10px,
+        #c62828 10px,
+        #c62828 20px
+      );
+      color: white;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 0.7rem;
+      letter-spacing: 6px;
+      text-align: center;
+      padding: 6px 0;
+      z-index: 10000;
+      text-transform: uppercase;
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 28px;
+      width: 100%;
+      background: rgba(5, 5, 5, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(252, 61, 33, 0.3);
+      padding: 12px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+    nav .logo-text {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--nasa-red);
+      letter-spacing: 3px;
+    }
+    nav .nav-links a {
+      color: var(--nasa-white);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-left: 30px;
+      opacity: 0.7;
+      transition: all 0.3s;
+    }
+    nav .nav-links a:hover {
+      opacity: 1;
+      color: var(--nasa-red);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 20px 60px;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--nasa-red);
+      color: var(--nasa-red);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      padding: 8px 24px;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      animation: pulse-border 2s ease-in-out infinite;
+    }
+    @keyframes pulse-border {
+      0%, 100% { border-color: var(--nasa-red); box-shadow: 0 0 10px rgba(252,61,33,0.2); }
+      50% { border-color: #ff6e40; box-shadow: 0 0 25px rgba(252,61,33,0.5); }
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: clamp(3rem, 10vw, 8rem);
+      letter-spacing: 8px;
+      line-height: 1;
+      margin-bottom: 10px;
+      background: linear-gradient(180deg, #ffffff 0%, #8899aa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-acronym {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+      color: var(--nasa-red);
+      letter-spacing: 6px;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+    }
+
+    .hero-sub {
+      max-width: 700px;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: rgba(232, 232, 232, 0.6);
+      margin-bottom: 50px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 50px;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--nasa-red);
+    }
+    .stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(232,232,232,0.4);
+      margin-top: 5px;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 16px 40px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-primary {
+      background: var(--nasa-red);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #ff5722;
+      box-shadow: 0 0 40px rgba(252,61,33,0.5);
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--nasa-white);
+      border: 1px solid rgba(232,232,232,0.3);
+    }
+    .btn-secondary:hover {
+      border-color: var(--nasa-white);
+      box-shadow: 0 0 20px rgba(232,232,232,0.1);
+    }
+
+    /* ===== SECTIONS COMMON ===== */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 100px 20px;
+    }
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-tag {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 5px;
+      color: var(--nasa-red);
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+    .section-desc {
+      font-size: 0.85rem;
+      line-height: 1.8;
+      color: rgba(232,232,232,0.5);
+      max-width: 700px;
+      margin-bottom: 50px;
+    }
+
+    /* ===== DOSSIER / SCIENTISTS ===== */
+    #dossier {
+      background: linear-gradient(180deg, var(--bg-black) 0%, #0a0a0a 50%, var(--bg-black) 100%);
+    }
+    .dossier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .dossier-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(252,61,33,0.15);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .dossier-card:hover {
+      border-color: rgba(252,61,33,0.5);
+      background: rgba(252,61,33,0.03);
+    }
+    .dossier-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: var(--nasa-red);
+      opacity: 0.6;
+    }
+    .dossier-status {
+      display: inline-block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      margin-bottom: 14px;
+    }
+    .status-dead {
+      background: rgba(255,23,68,0.15);
+      color: var(--redacted-red);
+      border: 1px solid rgba(255,23,68,0.3);
+    }
+    .status-missing {
+      background: rgba(255,171,0,0.15);
+      color: var(--classified-amber);
+      border: 1px solid rgba(255,171,0,0.3);
+    }
+    .dossier-name {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .dossier-role {
+      font-size: 0.72rem;
+      color: rgba(232,232,232,0.4);
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .dossier-detail {
+      font-size: 0.75rem;
+      line-height: 1.7;
+      color: rgba(232,232,232,0.55);
+    }
+    .redacted {
+      background: var(--nasa-red);
+      color: var(--nasa-red);
+      padding: 0 4px;
+      user-select: none;
+      cursor: not-allowed;
+    }
+
+    /* ===== NARRATIVE / TIMELINE ===== */
+    #narrative {
+      border-top: 1px solid rgba(252,61,33,0.1);
+    }
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px; top: 0;
+      width: 1px; height: 100%;
+      background: linear-gradient(180deg, var(--nasa-red), transparent);
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 40px;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -36px; top: 6px;
+      width: 10px; height: 10px;
+      border: 2px solid var(--nasa-red);
+      border-radius: 50%;
+      background: var(--bg-black);
+    }
+    .tl-date {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: var(--nasa-red);
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+    .tl-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .tl-text {
+      font-size: 0.78rem;
+      line-height: 1.7;
+      color: rgba(232,232,232,0.5);
+    }
+
+    /* ===== QUOTE BLOCK ===== */
+    .quote-section {
+      border-top: 1px solid rgba(252,61,33,0.1);
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .big-quote {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-weight: 700;
+      line-height: 1.5;
+      max-width: 800px;
+      margin: 0 auto 20px;
+      color: var(--nasa-white);
+    }
+    .quote-attr {
+      font-size: 0.7rem;
+      color: rgba(232,232,232,0.4);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* ===== TOKEN INFO ===== */
+    #token {
+      border-top: 1px solid rgba(252,61,33,0.1);
+    }
+    .token-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .token-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(232,232,232,0.08);
+      padding: 30px;
+      text-align: center;
+    }
+    .token-card-label {
+      font-size: 0.6rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(232,232,232,0.35);
+      margin-bottom: 12px;
+    }
+    .token-card-value {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--nasa-white);
+    }
+    .token-card-value.red { color: var(--nasa-red); }
+
+    .ca-box {
+      margin-top: 40px;
+      background: rgba(252,61,33,0.05);
+      border: 1px dashed rgba(252,61,33,0.3);
+      padding: 24px;
+      text-align: center;
+    }
+    .ca-label {
+      font-size: 0.6rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(232,232,232,0.4);
+      margin-bottom: 10px;
+    }
+    .ca-address {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--classified-amber);
+      word-break: break-all;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .ca-address:hover { color: var(--nasa-red); }
+    .ca-hint {
+      font-size: 0.6rem;
+      color: rgba(232,232,232,0.25);
+      margin-top: 8px;
+    }
+
+    /* ===== LINKS / SOCIALS ===== */
+    #links {
+      border-top: 1px solid rgba(252,61,33,0.1);
+      text-align: center;
+    }
+    .links-row {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border: 1px solid rgba(232,232,232,0.15);
+      color: var(--nasa-white);
+      text-decoration: none;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    .link-btn:hover {
+      border-color: var(--nasa-red);
+      color: var(--nasa-red);
+      box-shadow: 0 0 20px rgba(252,61,33,0.2);
+    }
+    .link-btn svg { width: 18px; height: 18px; fill: currentColor; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(252,61,33,0.1);
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .footer-text {
+      font-size: 0.65rem;
+      color: rgba(232,232,232,0.25);
+      letter-spacing: 2px;
+      line-height: 2;
+    }
+    .footer-disclaimer {
+      font-size: 0.55rem;
+      color: rgba(232,232,232,0.15);
+      max-width: 600px;
+      margin: 20px auto 0;
+      line-height: 1.8;
+    }
+
+    /* ===== GLITCH ANIMATION ===== */
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+    .glitch:hover {
+      animation: glitch 0.3s ease infinite;
+    }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav { padding: 10px 20px; }
+      nav .nav-links a { margin-left: 15px; font-size: 0.6rem; }
+      .hero-stats { gap: 30px; }
+      .dossier-grid { grid-template-columns: 1fr; }
+      .token-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      nav .nav-links { display: none; }
+      .token-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== TYPING CURSOR ===== */
+    .typing::after {
+      content: '█';
+      animation: blink 1s step-end infinite;
+      color: var(--nasa-red);
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* ===== NOISE TEXTURE ===== */
+    .noise {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 9998;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+  </style>
+</head>
+<body>
+
+<div class="noise"></div>
+
+<!-- STARFIELD -->
+<div class="starfield" id="starfield"></div>
+
+<!-- CLASSIFIED BANNER -->
+<div class="classified-bar">⚠ CLASSIFIED — LEVEL 5 CLEARANCE REQUIRED — CLASSIFIED ⚠</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo-text">$NASA</div>
+  <div class="nav-links">
+    <a href="#dossier">DOSSIER</a>
+    <a href="#narrative">TIMELINE</a>
+    <a href="#token">TOKEN</a>
+    <a href="#links">LINKS</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">⚠ EYES ONLY — SOLANA NETWORK</div>
+  <h1 class="glitch">$NASA</h1>
+  <div class="hero-acronym">No Alive Scientists Allowed</div>
+  <p class="hero-sub">
+    10+ scientists working on fusion, UAPs, and "anti-gravity" have died or gone missing.
+    The FBI is investigating. Congress is asking questions.
+    The cover-up is unraveling — and we're not letting them bury it.
+  </p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">11</div>
+      <div class="stat-label">Scientists Dead / Missing</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Years of "Coincidences"</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0</div>
+      <div class="stat-label">Answers Given</div>
+    </div>
+  </div>
+  <div class="cta-group">
+    <a href="#token" class="btn btn-primary">BUY $NASA</a>
+    <a href="#dossier" class="btn btn-secondary">VIEW DOSSIER</a>
+  </div>
+</section>
+
+<!-- DOSSIER -->
+<section id="dossier">
+  <div class="section-inner">
+    <div class="section-tag reveal">CLASSIFIED PERSONNEL FILE</div>
+    <h2 class="section-title reveal">The Dossier</h2>
+    <p class="section-desc reveal">
+      These individuals were connected to NASA, Los Alamos, MIT, NNSA, and classified defense programs.
+      All dead or missing within a 4-year window. Official cause: <span class="redacted">REDACTED</span>
+    </p>
+
+    <div class="dossier-grid">
+
+      <div class="dossier-card reveal">
+        <span class="dossier-status status-missing">MISSING</span>
+        <div class="dossier-name">Neil McCasland</div>
+        <div class="dossier-role">Retired USAF Major General — Aerospace & Defense</div>
+        <div class="dossier-detail">
+          Vanished February 2026 after leaving home for a walk in New Mexico.
+          Background in aerospace and classified defense programs.
+          His disappearance triggered the current wave of public attention.
+        </div>
+      </div>
+
+      <div class="dossier-card reveal">
+        <span class="dossier-status status-missing">MISSING</span>
+        <div class="dossier-name">Monica Reza</div>
+        <div class="dossier-role">Researcher — NASA Jet Propulsion Laboratory</div>
+        <div class="dossier-detail">
+          Went missing June 2025 while hiking near Los Angeles.
+          Worked at JPL — the same facility behind Mars rovers and deep space missions.
+          No trace found.
+        </div>
+      </div>
+
+      <div class="dossier-card reveal">
+        <span class="dossier-status status-dead">DECEASED</span>
+        <div class="dossier-name">Nuno Loureiro</div>
+        <div class="dossier-role">Physicist — MIT</div>
+        <div class="dossier-detail">
+          Killed in a shooting incident, December 2025.
+          Researcher at one of the world's most prestigious physics programs.
+          Officially: killed by a "former classmate."
+        </div>
+      </div>
+
+      <div class="dossier-card reveal">
+        <span class="dossier-status status-dead">DECEASED</span>
+        <div class="dossier-name">Jason Thomas</div>
+        <div class="dossier-role">Chemical Biologist — Novartis</div>
+        <div class="dossier-detail">
+          Died in a drowning incident, early 2025.
+          Official report: "no foul play."
+          Worked in chemical biology at a major pharmaceutical corporation.
+        </div>
+      </div>
+
+      <div class="dossier-card reveal">
+        <span class="dossier-status status-missing">MISSING</span>
+        <div class="dossier-name">Melissa Casias</div>
+        <div class="dossier-role">Administrative — Los Alamos National Laboratory</div>
+        <div class="dossier-detail">
+          Went missing in 2024.
+          Worked at Los Alamos — birthplace of the atomic bomb.
+          Reports suggest "personal circumstances." <span class="redacted">REDACTED</span>
+        </div>
+      </div>
+
+      <div class="dossier-card reveal">
+        <span class="dossier-status status-dead">DECEASED</span>
+        <div class="dossier-name">Amy Eskridge</div>
+        <div class="dossier-role">Independent Researcher — Anti-Gravity</div>
+        <div class="dossier-detail">
+          Died June 2022. Known for anti-gravity research claims.
+          Official cause: "personal distress."
+          One of the earliest cases in the pattern.
+        </div>
+      </div>
+
+      <div class="dossier-card reveal">
+        <span class="dossier-status status-missing">MISSING</span>
+        <div class="dossier-name">Steven Garcia</div>
+        <div class="dossier-role">Property Custodian — NNSA Facility</div>
+        <div class="dossier-detail">
+          Went missing August 2025.
+          Worked at a National Nuclear Security Administration facility.
+          Had access to <span class="redacted">CLASSIFIED</span> areas.
+        </div>
+      </div>
+
+      <div class="dossier-card reveal">
+        <span class="dossier-status status-missing">MISSING</span>
+        <div class="dossier-name">Anthony Chavez</div>
+        <div class="dossier-role">Former Worker — Los Alamos</div>
+        <div class="dossier-detail">
+          Missing since May 2024.
+          Another Los Alamos connection.
+          Second person from the same facility to vanish.
+        </div>
+      </div>
+
+      <div class="dossier-card reveal">
+        <span class="dossier-status status-dead">DECEASED</span>
+        <div class="dossier-name">Carl Grillmair</div>
+        <div class="dossier-role">Astrophysicist</div>
+        <div class="dossier-detail">
+          Murdered February 2026.
+          Professional astrophysicist with decades of research.
+          Death confirmed as homicide.
+        </div>
+      </div>
+
+      <div class="dossier-card reveal">
+        <span class="dossier-status status-dead">DECEASED</span>
+        <div class="dossier-name">Cole Allen</div>
+        <div class="dossier-role">NASA Employee</div>
+        <div class="dossier-detail">
+          NASA employee connected to the Trump shooting.
+          Was this revenge? Coincidence?
+          The questions keep piling up. The answers don't.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-section">
+  <div class="big-quote reveal">
+    "Very unlikely that this is a coincidence.<br>Something sinister could be happening."
+  </div>
+  <div class="quote-attr reveal">— JAMES COMER, HOUSE OVERSIGHT CHAIRMAN</div>
+</div>
+
+<!-- NARRATIVE TIMELINE -->
+<section id="narrative">
+  <div class="section-inner">
+    <div class="section-tag reveal">INCIDENT TIMELINE</div>
+    <h2 class="section-title reveal">The Pattern</h2>
+    <p class="section-desc reveal">
+      Scattered across four years. Different states, different agencies, different "explanations."
+      But when you line them up, the pattern speaks for itself.
+    </p>
+
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-date">JUNE 2022</div>
+        <div class="tl-title">Amy Eskridge — Anti-Gravity Researcher</div>
+        <div class="tl-text">Independent researcher known for anti-gravity claims dies. Attributed to "personal distress." The earliest case in what becomes a much larger story.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">2024</div>
+        <div class="tl-title">Los Alamos Goes Dark</div>
+        <div class="tl-text">Melissa Casias and Anthony Chavez — both connected to Los Alamos National Laboratory — go missing within months of each other. Two people, same facility, same year.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">EARLY 2025</div>
+        <div class="tl-title">Jason Thomas — Chemical Biologist</div>
+        <div class="tl-text">Novartis researcher drowns. Official ruling: no foul play. The list grows.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">JUNE 2025</div>
+        <div class="tl-title">Monica Reza Vanishes</div>
+        <div class="tl-text">NASA JPL researcher disappears while hiking near LA. No body, no trace. JPL — the facility behind every major space probe.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">AUGUST 2025</div>
+        <div class="tl-title">Steven Garcia — NNSA</div>
+        <div class="tl-text">Nuclear security facility worker goes missing. Had physical access to classified infrastructure.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">DECEMBER 2025</div>
+        <div class="tl-title">MIT Physicist Shot Dead</div>
+        <div class="tl-text">Nuno Loureiro, an MIT physicist, is killed. Officially by a "former classmate." The shooter's motive remains unclear.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">FEBRUARY 2026</div>
+        <div class="tl-title">The Dam Breaks</div>
+        <div class="tl-text">Major General Neil McCasland vanishes on a walk in New Mexico. Astrophysicist Carl Grillmair is murdered. Congress calls for investigation. FBI confirms it is "looking for connections." Trump acknowledges the situation publicly.</div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-date">APRIL 2026</div>
+        <div class="tl-title">$NASA Launches</div>
+        <div class="tl-text">The community launches $NASA on Solana. If the government won't give answers, we'll keep the spotlight on. No alive scientists allowed to be forgotten.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUMP QUOTE -->
+<div class="quote-section">
+  <div class="big-quote reveal">
+    "I just left a meeting on that subject, so pretty serious stuff.<br>Hopefully, coincidence… but some of them were very important people."
+  </div>
+  <div class="quote-attr reveal">— DONALD TRUMP, APRIL 2026</div>
+</div>
+
+<!-- TOKEN -->
+<section id="token">
+  <div class="section-inner">
+    <div class="section-tag reveal">MISSION BRIEFING</div>
+    <h2 class="section-title reveal">Token Intel</h2>
+    <p class="section-desc reveal">
+      $NASA is a community token on Solana. No team allocation. No VC. No alive scientists on the team.
+      Just degens who think the truth shouldn't be classified.
+    </p>
+
+    <div class="token-grid reveal">
+      <div class="token-card">
+        <div class="token-card-label">Network</div>
+        <div class="token-card-value">Solana</div>
+      </div>
+      <div class="token-card">
+        <div class="token-card-label">Ticker</div>
+        <div class="token-card-value red">$NASA</div>
+      </div>
+      <div class="token-card">
+        <div class="token-card-label">Supply</div>
+        <div class="token-card-value">1,000,000,000</div>
+      </div>
+      <div class="token-card">
+        <div class="token-card-label">Tax</div>
+        <div class="token-card-value">0%</div>
+      </div>
+    </div>
+
+    <div class="ca-box reveal">
+      <div class="ca-label">Contract Address</div>
+      <div class="ca-address" id="ca" onclick="copyCA()">TBA — LAUNCHING SOON</div>
+      <div class="ca-hint">click to copy</div>
+    </div>
+  </div>
+</section>
+
+<!-- LINKS -->
+<section id="links">
+  <div class="section-inner">
+    <div class="section-tag reveal">COMMUNICATION CHANNELS</div>
+    <h2 class="section-title reveal" style="text-align:center;">Join the Investigation</h2>
+    <br>
+    <div class="links-row reveal">
+      <a href="#" class="link-btn" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        TWITTER
+      </a>
+      <a href="#" class="link-btn" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        TELEGRAM
+      </a>
+      <a href="https://www.news.com.au/technology/science/us-launches-investigation-after-conspiracy-over-dead-and-missing-scientists-erupts/news-story/2a518fe6097f3b576257eb0b1cd41351" class="link-btn" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M16 13H8 M16 17H8 M10 9H8"/></svg>
+        NEWS SOURCE
+      </a>
+      <a href="#" class="link-btn" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.374 0 12c0 5.302 3.438 9.8 8.207 11.387.6.11.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        GITHUB
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-text">
+    $NASA — NO ALIVE SCIENTISTS ALLOWED<br>
+    A SOLANA COMMUNITY TOKEN — 2026
+  </div>
+  <div class="footer-disclaimer">
+    $NASA is a meme token with no intrinsic value or expectation of financial return.
+    This is not financial advice. The information presented is sourced from public reporting.
+    Do your own research. Don't invest what you can't afford to lose.
+  </div>
+</footer>
+
+<script>
+  // ===== STAR FIELD =====
+  const sf = document.getElementById('starfield');
+  for (let i = 0; i < 200; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2 + 0.5;
+    s.style.cssText = `
+      width:${size}px;height:${size}px;
+      left:${Math.random()*100}%;top:${Math.random()*100}%;
+      --dur:${Math.random()*3+1}s;
+    `;
+    sf.appendChild(s);
+  }
+
+  // ===== SCROLL REVEAL =====
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // ===== COPY CA =====
+  function copyCA() {
+    const ca = document.getElementById('ca').textContent;
+    if (ca.includes('TBA')) return;
+    navigator.clipboard.writeText(ca);
+    const el = document.getElementById('ca');
+    const orig = el.textContent;
+    el.textContent = 'COPIED ✓';
+    setTimeout(() => el.textContent = orig, 2000);
+  }
+</script>
+</body>
+</html>
